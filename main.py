@@ -15,12 +15,21 @@ def home():
 
 @app.route('/genero', method='GET')
 def genero():
+  # pametros
+  mensaje = request.params.mensaje
+  if mensaje != '' and mensaje == 'editado':
+    mensaje = 'Se ha editado un género'
+  # acceso de db
   conn = engine.connect()
   stmt = ("""
     SELECT * FROM generos
   """).format()
   generos = [dict(r) for r in conn.execute(stmt)]
-  locals = {'generos': generos}
+  # devolver datos a una vista
+  locals = {
+    'generos': generos,
+    'mensaje': mensaje
+  }
   return template('genero/index', locals)
 
 @app.route('/genero/editar', method='GET')
@@ -51,7 +60,7 @@ def genero_grabar():
   """).format(nombre, genero_id)
   conn.execute(stmt)
   # devolver datos a una vista
-  redirect('/genero')
+  redirect('/genero?mensaje=editado')
 
 if __name__ == '__main__':
   run(

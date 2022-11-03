@@ -8,6 +8,7 @@
 </head>
 <body>
   <h1>Lista de Géneros</h1>
+  <label>{{mensaje}}</label>
   <table>
     <thead>
       <th>Nombre</th>
