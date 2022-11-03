@@ -11,12 +11,17 @@ def send_static(filename):
 
 @app.route('/', method='GET')
 def home():
+  return template('home')
+
+@app.route('/genero', method='GET')
+def genero():
   conn = engine.connect()
   stmt = ("""
     SELECT * FROM generos
   """).format()
-  print([dict(r) for r in conn.execute(stmt)])
-  return template('home')
+  generos = [dict(r) for r in conn.execute(stmt)]
+  locals = {'generos': generos}
+  return template('genero/index', locals)
 
 if __name__ == '__main__':
   run(
