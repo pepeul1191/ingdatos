@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from bottle import Bottle, run, template
+from bottle import Bottle, run, template, static_file
 
 app = Bottle()
+
+@app.route('/:filename#.*#')
+def send_static(filename):
+  return static_file(filename, root='./static')
 
 @app.route('/', method='GET')
 def home():
