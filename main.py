@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from bottle import Bottle, run, template, static_file
+from database import engine
 
 app = Bottle()
 
@@ -10,6 +11,11 @@ def send_static(filename):
 
 @app.route('/', method='GET')
 def home():
+  conn = engine.connect()
+  stmt = ("""
+    SELECT * FROM generos
+  """).format()
+  print([dict(r) for r in conn.execute(stmt)])
   return template('home')
 
 if __name__ == '__main__':
