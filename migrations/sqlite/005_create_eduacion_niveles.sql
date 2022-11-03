@@ -1,0 +1,4 @@
+CREATE TABLE educacion_niveles(
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	nombre VARCHAR(30)
+);
