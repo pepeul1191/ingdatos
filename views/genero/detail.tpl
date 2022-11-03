@@ -11,7 +11,7 @@
   <form action="/genero/grabar" method="post">
     <input type="hidden" name="id" value="{{genero['id']}}"><br>
     <label for="name">Nombres:</label><br>
-    <input type="text" id="names" name="names" value="{{genero['nombre']}}">
+    <input type="text" id="nombre" name="nombre" value="{{genero['nombre']}}">
     <br><br>
     <button class="btn">Guardar Cambios</button>
   </form>
