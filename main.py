@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from bottle import Bottle, run
+from bottle import Bottle, run, template
 
 app = Bottle()
 
 @app.route('/', method='GET')
 def home():
-  return 'hola mundo'
+  return template('home')
 
 if __name__ == '__main__':
   run(
